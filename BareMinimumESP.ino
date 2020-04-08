@@ -3,6 +3,17 @@
 #include <ESP8266WiFi.h>
 #include "parse_merge.h"
 
+// Global variable
+ESP8266WebServer server(80);
+
+// Web Handle Here
+void web_handle_root(){
+  String web = "";
+  
+  server.send(200, "text/html", web);
+}
+
+// Function declaration
 void WiFi_Connect(String data_ssid, String data_pwd){
   bool stat = false;
   int elapsed_time = 0;
@@ -32,6 +43,8 @@ void WiFi_Connect(String data_ssid, String data_pwd){
 void setup(){
   Serial.begin(115200);
   WiFi_Connect("myWiFiName", "myWiFiPwd");
+  
+  server.on("/", web_handle_root);
 }
 
 void loop(){
@@ -40,4 +53,5 @@ void loop(){
     parse_string();
   }
   
+  server.handleClient();
 }
