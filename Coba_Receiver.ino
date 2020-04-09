@@ -28,7 +28,7 @@ void loop(){
     parse_string();
   }
   
-  Serial.println("\nTotal data ada : " + String(get_total_data()));
+  Serial.println("\nTotal data ada : " + String(get_data_total()));
   Serial.println("data ke 0 : " + DATA_STR(0));
   Serial.println("data ke 1 : " + DATA_STR(1));
   Serial.println("data ke 2 : " + DATA_STR(2));
