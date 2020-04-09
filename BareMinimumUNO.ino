@@ -1,15 +1,13 @@
 #include <Arduino.h>
-#include "parse_merge.h" // <-- important library
 #include <SPI.h>
 #include <MFRC522.h>
+#include "parse_merge.h" // <-- important library
 
 #define SS_PIN 10
 #define RST_PIN 9
 #define Status_Kunci() digitalRead(8)
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
-String RFID;
-
 static String data_array[6] = {};
 
 void send_command(String cmd, unsigned char index){
