@@ -28,10 +28,13 @@ void loop(){
     parse_string();
   }
   
-  send_command("200", 0);
+  /*send_command("200", 0);
   send_command("tes", 1);
   send_command("oke", 2);
   send_command("done", 3);
   send_command("50.5", 4);
-  send_command("34f", 5);
+  send_command("34f", 5);*/
+  Serial.println("200;tes;oke;done;50.5;34f;");
+  
+  delay(100);
 }
