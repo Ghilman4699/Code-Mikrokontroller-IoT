@@ -20,10 +20,10 @@ void send_command(String cmd, unsigned char index){
 }
 
 int MQ2_Get_Value(){
-  int data = 0;
+  int mq = 0;
   for(int x = 0; x<5;x++)
-    data += analogRead(A0);
-  return data/5;
+    mq += analogRead(A0);
+  return mq/5;
 }
 
 String RFID_Get_Data(){
