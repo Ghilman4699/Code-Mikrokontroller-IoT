@@ -5,6 +5,7 @@
 
 // Global variable
 ESP8266WebServer server(80);
+static String data_array[5] = {};
 
 // Web Handle Here
 void web_handle_root(){
@@ -40,9 +41,22 @@ void WiFi_Connect(String data_ssid, String data_pwd){
     Serial.println("[-] Error while connecting to WiFi!");
 }
 
+void send_command(String cmd, unsigned char index){
+  data_array[index] = cmd;
+  String new_data = "";
+  
+  for(int x=0;x<5;x++)
+    new_data += (data_array[x] + ";");
+  Serial.println(new_data);
+}
+
 void setup(){
   Serial.begin(115200);
   WiFi_Connect("myWiFiName", "myWiFiPwd");
+  
+  // Fill empty array
+  for(int x=0;x<5;x++)
+    data_array[x] = "000";
   
   server.on("/", web_handle_root);
 }
