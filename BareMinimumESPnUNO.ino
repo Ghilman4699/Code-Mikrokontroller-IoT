@@ -2,14 +2,14 @@
 #include "parse_merge.h" // <-- important library
 
 // Global variable
-static String data_array[5] = {};
+static String data_array[6] = {};
 
 // Function declaration
 void send_command(String cmd, unsigned char index){
   data_array[index] = cmd;
   String new_data = "";
   
-  for(int x=0;x<5;x++)
+  for(int x=0;x<6;x++)
     new_data += (data_array[x] + ";");
   Serial.println(new_data);
 }
@@ -18,7 +18,7 @@ void setup(){
   Serial.begin(115200); // <-- enlarge the data transmission size
 
   // Fill empty array
-  for(int x=0;x<5;x++)
+  for(int x=0;x<6;x++)
     data_array[x] = "000";
   
   // Once run code put here
