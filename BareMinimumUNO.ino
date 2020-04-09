@@ -50,12 +50,10 @@ void setup(){
 }
 
 void loop(){
-  // <-- Data gateway begin
-  // Access received data using DATA_STR(x) <-- x is data position
   if(Serial.available() > 0){
     data = Serial.readStringUntil('\n');
     parse_string();
   }
-  // <-- Data gateway end
   
+  send_command(MQ2_Get_Value(), 1);
 }
