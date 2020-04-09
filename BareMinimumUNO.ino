@@ -42,7 +42,6 @@ String RFID_Get_Data(){
 
 void setup(){
   Serial.begin(115200); // <-- enlarge the data transmission size
-  pinMode(A0, INPUT);
   SPI.begin();
   mfrc522.PCD_Init();
 
