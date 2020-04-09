@@ -67,5 +67,7 @@ void loop(){
     parse_string();
   }
   
-  server.handleClient();
+  //server.handleClient();
+  Serial.println("Data 1 : " + DATA_STR(1));
+  send_command("ESP-OK!", 1);
 }
