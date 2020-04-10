@@ -52,10 +52,6 @@ void setup(){
   Serial.begin(115200);
   WiFi_Connect("myWiFiName", "myWiFiPwd");
   
-  // Fill empty array
-  for(int x=0;x<6;x++)
-    data_array[x] = "000";
-  
   server.on("/", web_handle_root);
   server.begin();
 }
