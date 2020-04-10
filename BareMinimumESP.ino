@@ -42,9 +42,10 @@ void WiFi_Connect(String data_ssid, String data_pwd){
   }
   Serial.print(']');
   
-  if(stat)
+  if(stat){
     Serial.println("[+] Connected!");
-  else
+    Serial.println("[*] " + WiFi.localIP().toString());
+  }else
     Serial.println("[-] Error while connecting to WiFi!");
 }
 
