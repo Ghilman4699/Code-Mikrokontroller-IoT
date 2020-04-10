@@ -19,16 +19,10 @@ int MQ2_Get_Value(){
 String RFID_Get_Data(){
   String data_rfid = "";
   
-   if (!mfrc522.PICC_IsNewCardPresent())
-    return "ERR:Not_Present";
-  if (!mfrc522.PICC_ReadCardSerial()) 
-    return "ERR:Not_Readable";
-  
   for (byte i = 0; i < mfrc522.uid.size; i++)
      data_rfid = data_rfid + String(mfrc522.uid.uidByte[i]);
   return data_rfid;
 }
-
 
 void setup(){
   Serial.begin(115200); // <-- enlarge the data transmission size
@@ -46,5 +40,14 @@ void loop(){
     
     if(DATA_STR(0) == "REQ")
       Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
+  }
+  
+  if (mfrc522.PICC_IsNewCardPresent()){
+    if (!mfrc522.PICC_ReadCardSerial()) return;
+    
+    if(RFID_Get_Data()=="alamat rfid ne"){
+      .. ning baris iki gawe perintah nggo bukak pintu ..
+      Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
+    }
   }
 }
