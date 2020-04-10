@@ -29,10 +29,10 @@ int MQ2_Get_Value(){
 String RFID_Get_Data(){
   String data_rfid = "";
   
-   if (! mfrc522.PICC_IsNewCardPresent())
-    return;
-  if (! mfrc522.PICC_ReadCardSerial()) 
-    return;
+   if (!mfrc522.PICC_IsNewCardPresent())
+    return "ERR:Not_Present";
+  if (!mfrc522.PICC_ReadCardSerial()) 
+    return "ERR:Not_Readable";
   
   for (byte i = 0; i < mfrc522.uid.size; i++)
      data_rfid = data_rfid + String(mfrc522.uid.uidByte[i]);
