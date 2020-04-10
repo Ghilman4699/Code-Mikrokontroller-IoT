@@ -28,9 +28,6 @@ void setup(){
   Serial.begin(115200); // <-- enlarge the data transmission size
   SPI.begin();
   mfrc522.PCD_Init();
-
-  for(int x=0;x<6;x++)
-    data_array[x] = "000";
 }
 
 void loop(){
