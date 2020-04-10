@@ -5,7 +5,6 @@
 
 // Global variable
 ESP8266WebServer server(80);
-static String data_array[6] = {};
 
 // Web Handle Here
 void web_handle_root(){
@@ -41,15 +40,6 @@ void WiFi_Connect(String data_ssid, String data_pwd){
     Serial.println("[-] Error while connecting to WiFi!");
 }
 
-void send_command(String cmd, unsigned char index){
-  data_array[index] = cmd;
-  String new_data = "";
-  
-  for(int x=0;x<6;x++)
-    new_data += (data_array[x] + ";");
-  Serial.println(new_data);
-}
-
 void setup(){
   Serial.begin(115200);
   WiFi_Connect("myWiFiName", "myWiFiPwd");
@@ -68,6 +58,9 @@ void loop(){
   }
   
   //server.handleClient();
-  Serial.println("Data 1 : " + DATA_STR(1));
-  send_command("ESP-OK!", 1);
+  Serial.println("\nTotal data : " + String(get_data_total()));
+  Serial.println("Data RFID\t: " + DATA_STR(0));
+  Serial.println("Data MQ2\t: " + DATA_STR(1));
+  Serial.println("Data Kunci\t: " + DATA_STR(2));
+  delay(250); // <-- jeda agar data terlihat (tidak dibutuhkan pada program asli)
 }
