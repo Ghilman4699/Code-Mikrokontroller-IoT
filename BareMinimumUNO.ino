@@ -42,9 +42,13 @@ void loop(){
   if (mfrc522.PICC_IsNewCardPresent()){
     if (!mfrc522.PICC_ReadCardSerial()) return;
     
-    if(RFID_Get_Data()=="alamat rfid ne"){
-      .. ning baris iki gawe perintah nggo bukak pintu ..
+    if(RFID_Get_Data()=="18589242176"){
+      Serial.println("kartu dikenali..");
+      digitalWrite(8, HIGH);
+    }else{
+      Serial.println("kartu tdk dikenal..");
+      digitalWrite(8, LOW);
+      }
       Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
     }
   }
-}
