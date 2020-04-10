@@ -56,5 +56,5 @@ void loop(){
   }
   
   Serial.println("Data 1 : " + DATA_STR(1));
-  send_command(MQ2_Get_Value(), 1);
+  send_command(String(MQ2_Get_Value()), 1);
 }
