@@ -8,16 +8,6 @@
 #define Status_Kunci() digitalRead(8)
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
-static String data_array[6] = {};
-
-void send_command(String cmd, unsigned char index){
-  data_array[index] = cmd;
-  String new_data = "";
-
-  for(int x=0;x<6;x++)
-    new_data += (data_array[x] + ";");
-  Serial.println(new_data);
-}
 
 int MQ2_Get_Value(){
   int mq = 0;
@@ -53,8 +43,7 @@ void loop(){
   if(Serial.available() > 0){
     data = Serial.readStringUntil('\n');
     parse_string();
+    
+    Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
   }
-  
-  Serial.println("Data 1 : " + DATA_STR(1));
-  send_command(String(MQ2_Get_Value()), 1);
 }
