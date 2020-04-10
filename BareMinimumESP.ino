@@ -12,11 +12,11 @@ void web_handle_root(){
   
   String web = "";
   web += "<strong> Contoh Monitoring </strong>";
-  web += "<ul>"
-  web += "\t<li>RFID\t: " +DATA_STR(0)+ "</li>"
-  web += "\t<li>MQ2\t: " +DATA_STR(1)+ "</li>"
-  web += "\t<li>Pintu\t: " +DATA_STR(2)+ "</li>"
-  web += "</ul>"
+  web += "<ul>";
+  web += "\t<li>RFID\t: " +DATA_STR(0)+ "</li>";
+  web += "\t<li>MQ2\t: " +DATA_STR(1)+ "</li>";
+  web += "\t<li>Pintu\t: " +DATA_STR(2)+ "</li>";
+  web += "</ul>";
   
   server.send(200, "text/html", web);
 }
@@ -28,7 +28,7 @@ void WiFi_Connect(String data_ssid, String data_pwd){
   
   Serial.println("[*] Connecting..");
   elapsed_time = millis();
-  WiFi.begin(data_ssid.c_str(), data_pwd.c_str());
+  WiFi.begin("Rumah", "Khususrahmabayar2000");
   Serial.print('[');
   while(WiFi.status() != WL_CONNECTED){
     if( ((elapsed_time/1000) - (millis()/1000)) > 10 ){
@@ -51,7 +51,7 @@ void WiFi_Connect(String data_ssid, String data_pwd){
 
 void setup(){
   Serial.begin(115200);
-  WiFi_Connect("myWiFiName", "myWiFiPwd");
+//  WiFi_Connect("Rumah", "Khususrahmabayar2000");
   
   server.on("/", web_handle_root);
   server.begin();
