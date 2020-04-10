@@ -8,7 +8,15 @@ ESP8266WebServer server(80);
 
 // Web Handle Here
 void web_handle_root(){
+  Serial.println("REQ");
+  
   String web = "";
+  web += "<strong> Contoh Monitoring </strong>";
+  web += "<ul>"
+  web += "\t<li>RFID\t: " +DATA_STR(0)+ "</li>"
+  web += "\t<li>MQ2\t: " +DATA_STR(1)+ "</li>"
+  web += "\t<li>Pintu\t: " +DATA_STR(2)+ "</li>"
+  web += "</ul>"
   
   server.send(200, "text/html", web);
 }
@@ -49,6 +57,7 @@ void setup(){
     data_array[x] = "000";
   
   server.on("/", web_handle_root);
+  server.begin();
 }
 
 void loop(){
@@ -57,10 +66,5 @@ void loop(){
     parse_string();
   }
   
-  //server.handleClient();
-  Serial.println("\nTotal data : " + String(get_data_total()));
-  Serial.println("Data RFID\t: " + DATA_STR(0));
-  Serial.println("Data MQ2\t: " + DATA_STR(1));
-  Serial.println("Data Kunci\t: " + DATA_STR(2));
-  delay(250); // <-- jeda agar data terlihat (tidak dibutuhkan pada program asli)
+  server.handleClient();
 }
