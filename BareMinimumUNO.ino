@@ -41,8 +41,8 @@ void setup(){
 
 void loop(){
   if(Serial.available() > 0){
-    data = Serial.readStringUntil('\n');
-    parse_string();
+    //data = Serial.readStringUntil('\n');
+    //parse_string();
     
     Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
   }
