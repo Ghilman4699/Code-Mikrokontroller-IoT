@@ -31,10 +31,10 @@ void WiFi_Connect(String data_ssid, String data_pwd){
   WiFi.begin("Rumah", "Khususrahmabayar2000");
   Serial.print('[');
   while(WiFi.status() != WL_CONNECTED){
-    /*if( ((elapsed_time/1000) - (millis()/1000)) > 10 ){
+    if( ((elapsed_time/1000) - (millis()/1000)) > 10 ){
       stat = false;
       break;
-    }*/
+    }
     
     Serial.print('*');
     stat = true;
@@ -51,7 +51,7 @@ void WiFi_Connect(String data_ssid, String data_pwd){
 
 void setup(){
   Serial.begin(115200);
-//  WiFi_Connect("Rumah", "Khususrahmabayar2000");
+  WiFi_Connect("Rumah", "Khususrahmabayar2000");
   
   server.on("/", web_handle_root);
   server.begin();
