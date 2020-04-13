@@ -31,16 +31,16 @@ void WiFi_Connect(String data_ssid, String data_pwd){
   WiFi.begin("Rumah", "Khususrahmabayar2000");
   Serial.print('[');
   while(WiFi.status() != WL_CONNECTED){
-    if( ((elapsed_time/1000) - (millis()/1000)) > 10 ){
+    /*if( ((elapsed_time/1000) - (millis()/1000)) > 10 ){
       stat = false;
       break;
-    }
+    }*/
     
     Serial.print('*');
     stat = true;
     delay(150);
   }
-  Serial.print(']');
+  Serial.println(']');
   
   if(stat){
     Serial.println("[+] Connected!");
