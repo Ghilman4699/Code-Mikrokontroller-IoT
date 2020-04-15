@@ -62,7 +62,7 @@ void lampu_1_ON(){
   String web = "";
   web += "<strong>lampu satu dihidupkan/strong>";
 
-  Serial.println("Lampu1ON");
+  Serial.println("L1H");
 
   server.send(200, "text/html", web);
   }  
@@ -71,7 +71,7 @@ void lampu_1_OFF(){
   String web = "";
   web += "<strong>lampu satu dimatikan/strong>";
 
-  Serial.println("Lampu 1 OFF");
+  Serial.println("L1O");
 
   server.send(200, "text/html", web);
   } 
