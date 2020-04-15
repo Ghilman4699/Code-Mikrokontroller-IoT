@@ -38,8 +38,9 @@ void loop(){
     if(DATA_STR(0) == "REQ")
       Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
 
-      if(DATA_STR(3) == "Lampu1ON"){
+      if(DATA_STR(0) == "L1H"){
         digitalWrite(5, HIGH);
+        Serial.println("lampu 1 nyala");
         }
   }
   
