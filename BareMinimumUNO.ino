@@ -37,12 +37,16 @@ void loop(){
     
     if(DATA_STR(0) == "REQ")
       Serial.println(RFID_Get_Data() + ";" + String(MQ2_Get_Value()) + ";" + String(Status_Kunci()) + ";");
+
+      if(DATA_STR(3) == "Lampu1ON"){
+        digitalWrite(5, HIGH);
+        }
   }
   
   if (mfrc522.PICC_IsNewCardPresent()){
     if (!mfrc522.PICC_ReadCardSerial()) return;
     
-    if(RFID_Get_Data()=="18589242176"){
+    if(RFID_Get_Data()=="18589242176" || RFID_Get_Data()=="18513720418 " || RFID_Get_Data()=="2641751"){
       Serial.println("kartu dikenali..");
       digitalWrite(8, HIGH);
     }else{
