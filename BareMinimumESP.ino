@@ -11,11 +11,20 @@ void web_handle_root(){
   Serial.println("REQ");
   
   String web = "";
+  String msg = "";
+  if(DATA_STR(2)=="1"){
+    msg = "Terbuka";
+    }
+    else{
+      msg = "Tertutup";
+      }
   web += "<strong> Contoh Monitoring </strong>";
   web += "<ul>";
   web += "\t<li>RFID\t: " +DATA_STR(0)+ "</li>";
   web += "\t<li>MQ2\t: " +DATA_STR(1)+ "</li>";
-  web += "\t<li>Pintu\t: " +DATA_STR(2)+ "</li>";
+  web += "\t<li>Kondisi Kunci" + msg + "</li>";
+  web += "<a href=\"/hidup1\">Lampu1ON</a>\n"; 
+  web += "<a href=\"/mati1\">Lampu1OFF</a>\n"; 
   web += "</ul>";
   
   server.send(200, "text/html", web);
@@ -49,11 +58,31 @@ void WiFi_Connect(String data_ssid, String data_pwd){
     Serial.println("[-] Error while connecting to WiFi!");
 }
 
+void lampu_1_ON(){
+  String web = "";
+  web += "<strong>lampu satu dihidupkan/strong>";
+
+  Serial.println("Lampu1ON");
+
+  server.send(200, "text/html", web);
+  }  
+
+void lampu_1_OFF(){
+  String web = "";
+  web += "<strong>lampu satu dimatikan/strong>";
+
+  Serial.println("Lampu 1 OFF");
+
+  server.send(200, "text/html", web);
+  } 
+
 void setup(){
   Serial.begin(115200);
   WiFi_Connect("Rumah", "Khususrahmabayar2000");
   
   server.on("/", web_handle_root);
+  server.on("/hidup1", lampu_1_ON);
+  server.on("/mati1", lampu_1_OFF);
   server.begin();
 }
 
@@ -62,6 +91,5 @@ void loop(){
     data = Serial.readStringUntil('\n');
     parse_string();
   }
-  
   server.handleClient();
 }
